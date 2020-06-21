@@ -1,0 +1,127 @@
+Code,Member State,First-level NUTS,Second-level NUTS 1,Second-level NUTS 2,Second-level NUTS 3,Second-level NUTS 4,Second-level NUTS 5,Second-level NUTS 6,Second-level NUTS 7,Second-level NUTS 8,Second-level NUTS 9
+AT,Austria
+AT1,Austria,East Austria,Burgenland,Lower Austria,Vienna
+AT2,Austria,South Austria,Carinthia,Styria
+AT3,Austria,West Austria,Upper Austria,Salzburg,Tyrol,Vorarlberg
+BE,Belgium
+BE1,Belgium,Brussels Capital Region,Brussels Capital Region
+BE2,Belgium,Flemish Region,Antwerp,Limburg,East Flanders,Flemish Brabant,West Flanders
+BE3,Belgium,Walloon Region,Walloon Brabant,Hainaut,Liège,Luxembourg,Namur
+BG,Bulgaria
+BG3,Bulgaria,Northern and Eastern Bulgaria,Severozapaden,Severen tsentralen,Severoiztochen,Yugoiztochen
+BG4,Bulgaria,South-Western and South-Central Bulgaria,Yugozapaden,Yuzhen tsentralen
+CY,Cyprus
+CY0,Cyprus,Cyprus,Cyprus
+CZ,Czech Republic
+CZ0,Czech Republic,Czech Republic,Prague,Central Bohemia,Southwest,Northwest,Northeast,Southeast,Central Moravia,Moravia-Silesia
+DE,Germany
+DE1,Germany,Baden-Württemberg,Stuttgart,Karlsruhe,Freiburg,Tübingen
+DE2,Germany,Bavaria,Upper Bavaria,Lower Bavaria,Upper Palatinate,Upper Franconia,Middle Franconia,Lower Franconia,Swabia
+DE3,Germany,Berlin,Berlin
+DE4,Germany,Brandenburg,Brandenburg-Northeast,Brandenburg-Southwest
+DE5,Germany,Free Hanseatic City of Bremen,Free Hanseatic City of Bremen
+DE6,Germany,Hamburg,Hamburg
+DE7,Germany,Hessen,Darmstadt,Gießen,Kassel
+DE8,Germany,Mecklenburg-Vorpommern,Mecklenburg-Vorpommern
+DE9,Germany,Lower Saxony,Braunschweig,Hanover,Lüneburg,Weser-Ems
+DEA,Germany,North Rhine-Westphalia,Düsseldorf,Cologne,Münster,Detmold,Arnsberg
+DEB,Germany,Rhineland-Palatinate,Koblenz,Trier,Rheinhessen-Pfalz
+DEC,Germany,Saarland,Saarland
+DED,Germany,Saxony,Chemnitz,Dresden,Leipzig
+DEE,Germany,Saxony-Anhalt,Saxony-Anhalt
+DEF,Germany,Schleswig-Holstein,Schleswig-Holstein
+DEG,Germany,Thuringia,Thuringia
+DK,Denmark
+DK0,Denmark,Denmark,Hovedstaden,Zealand,Region of Southern Denmark,Central Jutland,North Jutland
+EE,Estonia
+EE0,Estonia,Estonia,Estonia
+EL,Greece
+EL3,Greece,Attica,Attica
+EL4,Greece,"Nisia Aigaiou, Kriti",North Aegean,South Aegean,Crete
+EL5,Greece,Voreia Ellada,Eastern Macedonia and Thrace,Central Macedonia,Western Macedonia,Epirus
+EL6,Greece,Kentriki Ellada,Thessaly,Ionian Islands,Western Greece,Central Greece,Peloponnese
+ES,Spain
+ES1,Spain,North West,Galicia,Asturias,Cantabria
+ES2,Spain,North East,Basque Community,Navarre,La Rioja,Aragon
+ES3,Spain,Community of Madrid,Community of Madrid
+ES4,Spain,Centre,Castile and León,Castile-La Mancha,Extremadura
+ES5,Spain,East,Catalonia,Valencian Community,Balearic Islands
+ES6,Spain,South,Andalusia,Region of Murcia,Ceuta,Melilla
+ES7,Spain,Canary Islands,Canary Islands
+FI,Finland
+FI1,Finland,Mainland Finland,East Finland,South Finland,West Finland,North Finland
+FI2,Finland,Åland,Åland
+FR,France
+FR1,France,Île-de-France
+FR2,France,Champagne-Ardenne,Picardy,Upper Normandy,Centre,Lower Normandy,Burgundy
+FR3,France,Nord-Pas-de-Calais
+FR4,France,Lorraine,Alsace,Franche-Comté
+FR5,France,Pays de la Loire,Brittany,Poitou-Charentes
+FR6,France,Aquitaine,Midi-Pyrénées,Limousin
+FR7,France,Auvergne-Rhône-Alpes,Rhône-Alpes,Auvergne
+FR8,France,Languedoc-Roussillon,Provence-Alpes-Côte d'Azur,Corsica
+FRA,France,Départements d'Outre-Mer,Guadeloupe,Martinique,French Guiana,La Réunion,Mayotte
+HR,Croatia
+HR0,Croatia,Croatia,Continental Croatia,Adriatic Croatia
+HU,Hungary
+HU1,Hungary,Central Hungary,Central Hungary
+HU2,Hungary,Transdanubia,Central Transdanubia,Western Transdanubia,Southern Transdanubia
+HU3,Hungary,Great Plain and North,Northern Hungary,Northern Great Plain,Southern Great Plain
+IE,Ireland
+IE0,Ireland,"Border, Midland and Western",Southern and Eastern
+IT,Italy
+ITC,Italy,North West,Aosta Valley,Liguria,Lombardy,Piedmont
+ITH,Italy,North East,Emilia-Romagna,Friuli-Venezia Giulia,Trentino-Alto Adige/Südtirol,Veneto
+ITI,Italy,Centre,Lazio,Marche,Tuscany,Umbria
+ITF,Italy,South,Abruzzo,Apulia,Basilicata,Calabria,Campania,Molise
+ITG,Italy,Islands,Sardinia,Sicily
+LT,Lithuania
+LT0,Lithuania,Lithuania,Lithuania
+LU,Luxembourg
+LU0,Luxembourg,Luxembourg,Luxembourg
+LV,Latvia
+LV0,Latvia,Latvia,Latvia
+MT,Malta
+MT0,Malta,Malta,Malta
+NL,Netherlands
+NL1,Netherlands,North Netherlands,Groningen,Friesland,Drenthe
+NL2,Netherlands,East Netherlands,Overijssel,Gelderland,Flevoland
+NL3,Netherlands,West Netherlands,Utrecht,North Holland,South Holland,Zeeland
+NL4,Netherlands,South Netherlands,North Brabant,Limburg
+PL,Poland
+PL1,Poland,Central Region,Łódź,Mazovia
+PL2,Poland,South Region,Lesser Poland,Silesia
+PL3,Poland,East Region,Lublin,Subcarpathian,Świętokrzyskie,Podlaskie
+PL4,Poland,Northwest Region,Greater Poland,West Pomerania,Lubusz
+PL5,Poland,Southwest Region,Lower Silesia,Opole Voivodeship
+PL6,Poland,North Region,Kuyavian-Pomeranian,Varmia-Masuria,Pomerania
+PT,Portugal
+PT1,Portugal,Continental Portugal,Norte,Algarve,Centro,Lisbon,Alentejo
+PT2,Portugal,Azores,Azores
+PT3,Portugal,Madeira,Madeira
+RO,Romania
+RO1,Romania,One,Nord-Vest,Centru
+RO2,Romania,Two,Nord-Est,Sud-Est
+RO3,Romania,Three,Sud – Muntenia,București – Ilfov
+RO4,Romania,Four,Sud-Vest Oltenia,Vest
+SE,Sweden
+SE1,Sweden,East Sweden,Stockholm County,East Middle Sweden
+SE2,Sweden,Småland and the islands,South Sweden,West Sweden
+SE3,Sweden,North Sweden,North Middle Sweden,Middle Norrland,Upper Norrland
+SI,Slovenia
+SI0,Slovenia,Slovenia,Eastern Slovenia,Western Slovenia
+SK,Slovakia
+SK0,Slovakia,Slovakia,Bratislava Region,Western Slovakia,Central Slovakia,Eastern Slovakia
+UK,United Kingdom
+UKC,United Kingdom,North East,Tees Valley,Durham,Northumberland,Tyne and Wear
+UKD,United Kingdom,North West,Cumbria,Cheshire,Greater Manchester,Lancashire,Merseyside
+UKE,United Kingdom,Yorkshire and the Humber,East Yorkshire,Northern Lincolnshire,Humberside,North Yorkshire,South Yorkshire,West Yorkshire
+UKF,United Kingdom,East Midlands,Derbyshire,Nottinghamshire,Leicestershire,Rutland,Northamptonshire,Lincolnshire
+UKG,United Kingdom,West Midlands,Herefordshire,Worcestershire,Warwickshire,Shropshire,Staffordshire,West Midlands
+UKH,United Kingdom,East of England,East Anglia,Bedfordshire,Hertfordshire,Essex
+UKI,United Kingdom,Greater London,Inner London,Outer London
+UKJ,United Kingdom,South East,Berkshire,Buckinghamshire,Oxfordshire,Surrey,East Sussex,West Sussex,Hampshire,Isle of Wight,Kent
+UKK,United Kingdom,South West,Gloucestershire,Wiltshire,Bristol,Dorset,Somerset,Devon,Cornwall and Isles of Scilly
+UKL,United Kingdom,Wales,West Wales,The Valleys,East Wales
+UKM,United Kingdom,Scotland,Eastern Scotland,South Western Scotland,North Eastern Scotland,Highlands and Islands
+UKN,United Kingdom,Northern Ireland,Northern Ireland
