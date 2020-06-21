@@ -238,7 +238,7 @@ app.layout = html.Div([ #Main Container
                     html.H4(children='HICP aggregate (EU28)'),
                     html.H2(f"{HICP_card.iloc[0,-1]:,.1f}", id = 'card2'),
                     dbc.Tooltip([
-                        html.P('indicator: All items'),
+                        html.P('indicator: Harmonized index of consumer price - All items'),
                         html.P('Adjustment: Seasonally Unadjusted'),
                         html.P('Unit: Harmonized consumer price index, 2015=100'),
                     ],
@@ -361,49 +361,6 @@ app.layout = html.Div([ #Main Container
             ],
             lg = 6, md = 12
             ),
-            #HCP
-            dbc.Col([
-                dbc.Card([
-                    html.H4(
-                        children='HICP',
-                        className='text-center my-2',
-                    ),
-                    html.Div([
-                        dcc.Dropdown(
-                            id='dropdown_HICP',
-                            options=[{'label': i, 'value': i} for i in dropdown_HICP],
-                            multi=False,
-                            value = dropdown_HICP[0],
-                        ),
-                    ],
-                    className="p-1"
-                    )
-                ],
-                className='my-2',
-                id = 'HICP'
-                ),
-                dbc.Tooltip([
-                    html.P('Adjustment: Seasonally Unadjusted'),
-                    html.P('Unit: Harmonized consumer price index, 2015=100'),
-                ],
-                target="HICP",
-                style= {'opacity': '0.9'}
-                ),
-                html.Div([
-                    html.Div([
-                        dcc.Graph(id='line-graph-HICP',config=config)
-                    ],
-                    className='p-1'
-                    ),
-                ],
-                style={},
-                className='card my-2 '
-                ),
-            ],
-            lg = 6, md = 12
-            )
-        ]),
-        dbc.Row([
             dbc.Col([
                 dbc.Card([
                     html.H4(
@@ -443,81 +400,44 @@ app.layout = html.Div([ #Main Container
             ],
             lg = 6, md = 12
             ),
+        ]),
+        dbc.Row([
+            #HCP
             dbc.Col([
                 dbc.Card([
                     html.H4(
-                        children='Sentiment Indicators',
+                        children='HICP',
                         className='text-center my-2',
                     ),
                     html.Div([
                         dcc.Dropdown(
-                            id='dropdown_SI',
-                            options=[{'label': i, 'value': i} for i in dropdown_SI],
+                            id='dropdown_HICP',
+                            options=[{'label': i, 'value': i} for i in dropdown_HICP],
                             multi=False,
-                            value = dropdown_SI[1],
+                            value = dropdown_HICP[0],
                         ),
                     ],
                     className="p-1"
                     )
                 ],
                 className='my-2',
-                id = 'SI'
+                id = 'HICP'
                 ),
                 dbc.Tooltip([
-                    html.P('Adjustment: Seasonally Adjusted'),
+                    html.P('Adjustment: Seasonally Unadjusted'),
+                    html.P('Unit: Harmonized consumer price index, 2015=100'),
                 ],
-                target="SI",
+                target="HICP",
                 style= {'opacity': '0.9'}
                 ),
                 html.Div([
                     html.Div([
-                        dcc.Graph(id='line-graph-SI',config=config)
+                        dcc.Graph(id='line-graph-HICP',config=config)
                     ],
                     className='p-1'
                     ),
                 ],
                 style={},
-                className='card my-2 '
-                ),
-            ],
-            lg = 6, md = 12
-            ),
-        ]),
-        dbc.Row([
-            #energy
-            dbc.Col([
-                dbc.Card([
-                    html.H4(
-                        children='Energy',
-                        className='text-center my-2',
-                    ),
-                    html.Div([
-                        dcc.Dropdown(
-                            id='dropdown_EN',
-                            options=[{'label': i, 'value': i} for i in dropdown_EN],
-                            multi=False,
-                            value = dropdown_EN[0],
-                        ),
-                    ],
-                    className="p-1"
-                    )
-                ],
-                className='my-2',
-                id = 'EN'
-                ),
-                dbc.Tooltip([
-                    html.P('Adjustment: Seasonally Unadjusted'),
-                ],
-                target="EN",
-                style= {'opacity': '0.9'}
-                ),
-                html.Div([
-                    html.Div([
-                        dcc.Graph(id='line-graph-EN',config=config)
-                    ],
-                    className='p-1'
-                    ),
-                ],
                 className='card my-2 '
                 ),
             ],
@@ -562,6 +482,86 @@ app.layout = html.Div([ #Main Container
             ],
             lg = 6, md = 12
             )
+        ]),
+        dbc.Row([
+            dbc.Col([
+                dbc.Card([
+                    html.H4(
+                        children='Sentiment Indicators',
+                        className='text-center my-2',
+                    ),
+                    html.Div([
+                        dcc.Dropdown(
+                            id='dropdown_SI',
+                            options=[{'label': i, 'value': i} for i in dropdown_SI],
+                            multi=False,
+                            value = dropdown_SI[1],
+                        ),
+                    ],
+                    className="p-1"
+                    )
+                ],
+                className='my-2',
+                id = 'SI'
+                ),
+                dbc.Tooltip([
+                    html.P('Adjustment: Seasonally Adjusted'),
+                ],
+                target="SI",
+                style= {'opacity': '0.9'}
+                ),
+                html.Div([
+                    html.Div([
+                        dcc.Graph(id='line-graph-SI',config=config)
+                    ],
+                    className='p-1'
+                    ),
+                ],
+                style={},
+                className='card my-2 '
+                ),
+            ],
+            lg = 6, md = 12
+            ),
+            #energy
+            dbc.Col([
+                dbc.Card([
+                    html.H4(
+                        children='Energy',
+                        className='text-center my-2',
+                    ),
+                    html.Div([
+                        dcc.Dropdown(
+                            id='dropdown_EN',
+                            options=[{'label': i, 'value': i} for i in dropdown_EN],
+                            multi=False,
+                            value = dropdown_EN[0],
+                        ),
+                    ],
+                    className="p-1"
+                    )
+                ],
+                className='my-2',
+                id = 'EN'
+                ),
+                dbc.Tooltip([
+                    html.P('Adjustment: Seasonally Unadjusted'),
+                ],
+                target="EN",
+                style= {'opacity': '0.9'}
+                ),
+                html.Div([
+                    html.Div([
+                        dcc.Graph(id='line-graph-EN',config=config)
+                    ],
+                    className='p-1'
+                    ),
+                ],
+                className='card my-2 '
+                ),
+            ],
+            lg = 6, md = 12
+            ),
         ]),
 
     ],
