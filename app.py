@@ -29,7 +29,7 @@ app.title = 'COVID-19 - Economic dashboard'
 
 flask_app = app.server
 
-config = {'displayModeBar': False}
+config = {'displayModeBar': True}
 
 #for heroku to run correctly
 server = app.server
@@ -219,7 +219,7 @@ app.layout = html.Div([ #Main Container
                     html.H2(f"{GDP_card.iloc[0,-1]:,.1f}", id = 'card1'),
                     dbc.Tooltip([
                         html.P('National Account Indicator: Gross domestic product at market prices'),
-                        html.P('Unit: Chain linked volumes, index 2015=100'),
+                        html.P('Unit: Chain linked volumes, index 2005=100'),
                     ],
                     target="card1",
                     style= {'opacity': '0.9'}
@@ -344,7 +344,7 @@ app.layout = html.Div([ #Main Container
                 id = 'income'
                 ),
                 dbc.Tooltip([
-                    html.P('Unit: Chain linked volumes, index 2015=100'),
+                    html.P('Unit: Chain linked volumes, index 2005=100'),
                 ],
                 target="income",
                 style= {'opacity': '0.9'}
@@ -364,7 +364,7 @@ app.layout = html.Div([ #Main Container
             dbc.Col([
                 dbc.Card([
                     html.H4(
-                        children='Job',
+                        children='Employment',
                         className='text-center my-2',
                     ),
                     html.Div([
@@ -447,7 +447,7 @@ app.layout = html.Div([ #Main Container
             dbc.Col([
                 dbc.Card([
                     html.H4(
-                        children='Interest Rate',
+                        children='Interest Rates',
                         className='text-center my-2',
                     ),
                     html.Div([
@@ -527,7 +527,7 @@ app.layout = html.Div([ #Main Container
             dbc.Col([
                 dbc.Card([
                     html.H4(
-                        children='Energy',
+                        children='Energy Production, Consumption and Import',
                         className='text-center my-2',
                     ),
                     html.Div([

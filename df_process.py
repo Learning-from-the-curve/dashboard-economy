@@ -1,6 +1,3 @@
-import warnings
-warnings.filterwarnings("ignore")
-
 import pickle
 import json
 import pandas as pd
@@ -36,7 +33,7 @@ path_ISO = Path.cwd() / 'input' / 'ISO.csv'
 # import codes for countries
 ISO = pd.read_csv(path_ISO)
 #pd.set_option('display.max_rows', df.shape[0]+1)
-start_date = 1996
+start_date = 1900
 end_date = 2022
 
 #########################################################################################
@@ -45,7 +42,7 @@ end_date = 2022
 
 #first card: GDP
 GDP = pd.read_csv(path_GDP)
-GDP_card = eurostat_columns_df(GDP, "Y", 2019, end_date, dict_col = { "na_item": ["B1GQ"], "unit": ["CLV_I15"], r"geo\time": ["EU28"]})
+GDP_card = eurostat_columns_df(GDP, "Y", 2019, end_date, dict_col = { "na_item": ["B1GQ"], "unit": ["CLV_I05"], r"geo\time": ["EU28"]})
 GDP_card.reset_index(drop = True, inplace = True)
 GDP_card = GDP_card.loc[:, ~(GDP_card.isnull()).any()]
 #second card: HICP
@@ -68,17 +65,17 @@ countries_aggr=[]
 
 #first plot: GDP
 
-GDP_plot = eurostat_columns_df(GDP, "Y", start_date, end_date, dict_col = { "na_item": ["B1GQ"], "unit": ["CLV_I15"], r"geo\time": []})
+GDP_plot = eurostat_columns_df(GDP, "Y", start_date, end_date, dict_col = { "na_item": ["B1GQ"], "unit": ["CLV_I05"], r"geo\time": []})
 GDP_plot = GDP_plot.drop(['na_item','unit'], axis=1).reset_index(drop = True)
 
 for geo in GDP_plot[r"geo\time"]:
     if geo in set(ISO['alpha-2']):
         GDP_plot.at[GDP_plot[r"geo\time"] == geo,r"geo\time"] = ISO.loc[ISO['alpha-2'] == geo,'name'].iloc[0]
 
-countries_aggr.append(list(set(GDP_plot[r"geo\time"])-set(['XK','Bosnia and Herzegovina','EA12','EU15'])))
+countries_aggr.append(list(set(GDP_plot[r"geo\time"])-set(['EA12','EU15'])))
 
 GDP_plot = GDP_plot.set_index(r"geo\time").T
-GDP_plot.drop(['XK','Bosnia and Herzegovina','EA12','EU15'], axis=1, inplace=True)
+GDP_plot.drop(['EA12','EU15'], axis=1, inplace=True)
 
 #second plot: HICP 
 #   CP-HI00	HICP - All items (HICP=Harmonized Index of Consumer Prices)
@@ -324,17 +321,17 @@ IRST_3M_plot.drop(['United States of America','Japan'], axis=1, inplace=True)
 #first plot: gross va 
 grossVA = pd.read_csv(path_grossVA)
 
-grossVA_plot = eurostat_columns_df(grossVA, "Q", start_date, end_date, dict_col = { 'unit': ['CLV_I15'], "na_item": ['B1G'], "s_adj": ['NSA'], "nace_r2": ['TOTAL'], r"geo\time": []})
+grossVA_plot = eurostat_columns_df(grossVA, "Q", start_date, end_date, dict_col = { 'unit': ['CLV_I05'], "na_item": ['B1G'], "s_adj": ['NSA'], "nace_r2": ['TOTAL'], r"geo\time": []})
 grossVA_plot = grossVA_plot.drop(['unit','s_adj','nace_r2','na_item'], axis=1).reset_index(drop = True)
 
 for geo in grossVA_plot[r"geo\time"]:
     if geo in set(ISO['alpha-2']):
         grossVA_plot.at[grossVA_plot[r"geo\time"] == geo,r"geo\time"] = ISO.loc[ISO['alpha-2'] == geo,'name'].iloc[0]
 
-countries_aggr.append(list(set(grossVA_plot[r"geo\time"])-set(['Bosnia and Herzegovina', 'EA12', 'EU15'])))
+countries_aggr.append(list(set(grossVA_plot[r"geo\time"])-set([ 'EA12', 'EU15'])))
 
 grossVA_plot = grossVA_plot.set_index(r"geo\time").T
-grossVA_plot.drop(['Bosnia and Herzegovina', 'EA12', 'EU15'], axis=1, inplace=True)
+grossVA_plot.drop([ 'EA12', 'EU15'], axis=1, inplace=True)
 
 #second plot: employment 
 employment = pd.read_csv(path_employment)
