@@ -1,0 +1,42 @@
+# This workflow will install Python dependencies, run tests and lint with a single version of Python
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+
+name: Data Update 3AM
+
+on:
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    - cron:  '0 0 * * 0'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - name: Run df_process
+      run: |
+        python df_process.py
+    - name: Writing the pickles jar
+      uses: actions/upload-artifact@v1
+      with:
+        name: pickles_jar
+        path: pickles_jar/
+    - name: Check for changes
+      run: git status
+    - name: Commit changed files
+      run: |
+        git config user.email "gallinafede@gmail.com"
+        git config user.name "FedeGall"
+        git commit -a -m "Data Updated"
+    - name: Push code to master
+      run: git push
