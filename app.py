@@ -153,7 +153,6 @@ markdown_data_info = html.Div([
 ############################
 
 app.layout = html.Div([ #Main Container   
-    html.Div([
         #Header TITLE
         html.Div([
             #Info Modal Button LEFT
@@ -563,13 +562,8 @@ app.layout = html.Div([ #Main Container
             lg = 6, md = 12
             ),
         ]),
-
-    ],
-    className="container-fluid cf py-2"
-    ),
-
 ],
-className="container-fluid"
+className="container-fluid cf py-2"
 )
 
 # draw the two graphs under the map for confirmed cases and deaths
