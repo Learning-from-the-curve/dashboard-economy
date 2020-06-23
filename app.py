@@ -156,7 +156,6 @@ app.layout = html.Div([ #Main Container
         #Header TITLE
         html.Div([
             #Info Modal Button LEFT
-            #dbc.Button("Relevant info", id="open-centered-left", className="btn "),
             dbc.ButtonGroup(
                 [
                     dbc.Button("Home", href="https://www.learningfromthecurve.net/", target="_top", external_link=True, className="py-2"),
@@ -167,11 +166,10 @@ app.layout = html.Div([ #Main Container
             ),
             #H2 Title
             html.H2(
-                children='Economic Dashboard',
+                children='Economic Dash board',
                 className="text-center",
             ),
             #Info Modal Button RIGHT
-            #dbc.Button("Datasets info", id="open-centered-right", className="btn "),
             dbc.ButtonGroup(
                 [
                     dbc.Button("Info", id="open-centered-left", className="py-2"),
