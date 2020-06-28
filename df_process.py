@@ -9,21 +9,35 @@ from pickle_functions import picklify, unpicklify
 ######################################
 # Retrieve data
 ######################################
-eurostat_requests()
+dict_codes = {'Retail_sale_monthly_data': 'ei_bsrt_m_r2',
+                 'Sentiment_indicator_monthly_data': 'ei_bssi_m_r2',
+                 'Services_monthly_data': 'ei_bsse_m_r2',
+                 'EU_Business_climate_indicator_monthly_data': 'ei_bsci_m_r2',
+                 'Harmonized_index_of_consumer_prices_monthly_data': 'ei_cphi_m',
+                 'Energy_monthly_data': 'ei_isen_m',
+                 'Unemployment_by_sex_and_age_monthly_data': 'une_rt_m',
+                 'Job_vacancy_rate': 'ei_lmjv_q_r2',
+                 'Interest_rate_monthly_data': 'ei_mfir_m',
+                 'GDP_and_main_components': 'nama_10_gdp',
+                 'Gross_value_added_and_income_by_industry': 'namq_10_a10',
+                 'Employmentby_industry': 'namq_10_a10_e',
+    } 
+path = Path.cwd() / 'Eurostat_data'
+eurostat_requests(path, dict_codes)
 
 # Paths
-path_grossVA = Path.cwd() / 'Eurostat_data' / 'Gross_value_added_and_income_by_industry.csv'
-path_employment = Path.cwd() / 'Eurostat_data' / 'Employmentby_industry.csv'
-path_GDP = Path.cwd() / 'Eurostat_data' / 'GDP_and_main_components.csv'
-path_HICP = Path.cwd() / 'Eurostat_data' / 'Harmonized_index_of_consumer_prices_monthly_data.csv'
-path_HU = Path.cwd() / 'Eurostat_data' / 'Unemployment_by_sex_and_age_monthly_data.csv'
-path_BC = Path.cwd() / 'Eurostat_data' / 'EU_Business_climate_indicator_monthly_data.csv'
-path_energy = Path.cwd() / 'Eurostat_data' / 'Energy_monthly_data.csv'
-path_interest = Path.cwd() / 'Eurostat_data' / 'Interest_rate_monthly_data.csv'
-path_job = Path.cwd() / 'Eurostat_data' / 'Job_vacancy_rate.csv'
-path_retail = Path.cwd() / 'Eurostat_data' / 'Retail_sale_monthly_data.csv'
-path_sentiment = Path.cwd() / 'Eurostat_data' / 'Sentiment_indicator_monthly_data.csv'
-path_services = Path.cwd() / 'Eurostat_data' / 'Services_monthly_data.csv'
+path_grossVA = path / 'Gross_value_added_and_income_by_industry.csv'
+path_employment = path / 'Employmentby_industry.csv'
+path_GDP = path / 'GDP_and_main_components.csv'
+path_HICP = path / 'Harmonized_index_of_consumer_prices_monthly_data.csv'
+path_HU = path / 'Unemployment_by_sex_and_age_monthly_data.csv'
+path_BC = path / 'EU_Business_climate_indicator_monthly_data.csv'
+path_energy = path / 'Energy_monthly_data.csv'
+path_interest = path / 'Interest_rate_monthly_data.csv'
+path_job = path / 'Job_vacancy_rate.csv'
+path_retail = path / 'Retail_sale_monthly_data.csv'
+path_sentiment = path / 'Sentiment_indicator_monthly_data.csv'
+path_services = path / 'Services_monthly_data.csv'
 path_ISO = Path.cwd() / 'input' / 'ISO.csv'
 
 #########################################################################################
