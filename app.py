@@ -52,9 +52,7 @@ pickles_list = [
     'SI_Construction_plot',
     'RS_plot',
     'SV_plot',
-    'CN_plot',
     'IRST_LTGBY_plot',
-    'IND_plot',
     'PEL_plot',
     'SI_Economic_plot',
     'SI_Industrial_plot',
@@ -88,27 +86,25 @@ job_plot = unpicklify(pickles_list[8])
 SI_Construction_plot = unpicklify(pickles_list[9])
 RS_plot = unpicklify(pickles_list[10])
 SV_plot = unpicklify(pickles_list[11])
-CN_plot = unpicklify(pickles_list[12])
-IRST_LTGBY_plot = unpicklify(pickles_list[13])
-IND_plot = unpicklify(pickles_list[14])
-PEL_plot = unpicklify(pickles_list[15])
-SI_Economic_plot = unpicklify(pickles_list[16])
-SI_Industrial_plot = unpicklify(pickles_list[17])
-SI_Retail_plot = unpicklify(pickles_list[18])
-SI_Consumer_plot = unpicklify(pickles_list[19])
-SI_Services_plot = unpicklify(pickles_list[20])
-IRST_DDI_plot = unpicklify(pickles_list[21])
-IRST_3M_plot = unpicklify(pickles_list[22])
-grossVA_plot = unpicklify(pickles_list[23])
-employment_plot = unpicklify(pickles_list[24])
-CEL_plot = unpicklify(pickles_list[25])
-IEL_plot = unpicklify(pickles_list[26])
-PNG_plot = unpicklify(pickles_list[27])
-CNG_plot = unpicklify(pickles_list[28])
-ING_plot = unpicklify(pickles_list[29]) 
-HIIG_plot = unpicklify(pickles_list[30]) 
-HIS_plot = unpicklify(pickles_list[31]) 
-HI00XEF_plot = unpicklify(pickles_list[32]) 
+IRST_LTGBY_plot = unpicklify(pickles_list[12])
+PEL_plot = unpicklify(pickles_list[13])
+SI_Economic_plot = unpicklify(pickles_list[14])
+SI_Industrial_plot = unpicklify(pickles_list[15])
+SI_Retail_plot = unpicklify(pickles_list[16])
+SI_Consumer_plot = unpicklify(pickles_list[17])
+SI_Services_plot = unpicklify(pickles_list[18])
+IRST_DDI_plot = unpicklify(pickles_list[19])
+IRST_3M_plot = unpicklify(pickles_list[20])
+grossVA_plot = unpicklify(pickles_list[21])
+employment_plot = unpicklify(pickles_list[22])
+CEL_plot = unpicklify(pickles_list[23])
+IEL_plot = unpicklify(pickles_list[24])
+PNG_plot = unpicklify(pickles_list[25])
+CNG_plot = unpicklify(pickles_list[26])
+ING_plot = unpicklify(pickles_list[27]) 
+HIIG_plot = unpicklify(pickles_list[28]) 
+HIS_plot = unpicklify(pickles_list[29]) 
+HI00XEF_plot = unpicklify(pickles_list[30]) 
 
 dropdown_UJ = ['Unemployment', 'Job Vacancy - All NACE activities','Employment - All NACE activities']
 dropdown_CRS = ['Consumer', 'Retail Sale', 'Services']

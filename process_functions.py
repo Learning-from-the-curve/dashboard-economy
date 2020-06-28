@@ -5,6 +5,9 @@ from itertools import product
 from pathlib import Path
 import eurostat
 
+start_date = 1900
+end_date = 2022
+
 def write_log(str):
     '''
     function used to write on the log.txt file the date and time and notes on the changes while updating the /input csv files
@@ -52,8 +55,7 @@ def eurostat_columns_df(df, start_date, end_date, dict_col):
     EXAMPLE:
     eurostat_columns_df(df, "Y", 2010, 2020, dict_col = {"sex": ["T"], "isced11": [], "age": [], "unit": [], r"geo\time": []})
     '''
-    time_interval = df.columns[-1]
-    #print(time_interval,len(time_interval))
+    time_interval = str(df.columns[-1])
     years = [f"{x}" for x in range(start_date, end_date + 1)] # Create a list with the year of interest
     if len(time_interval) == 4: # If the DataFrame contains yearly data and the time columns follow the year format
         time_cols = [] # Initialize an empty list
@@ -97,10 +99,7 @@ def eurostat_requests():
     '''
     Function to request data from Eurostat using variable codes from a dictionary. Then writes the data to csv.
     '''
-    dict_codes = {'Consumer_monthly_data': 'ei_bsco_m',
-                 'Industry_monthly_data': 'ei_bsin_m_r2',
-                 'Construction_monthly_data': 'ei_bsbu_m_r2',
-                 'Retail_sale_monthly_data': 'ei_bsrt_m_r2',
+    dict_codes = {'Retail_sale_monthly_data': 'ei_bsrt_m_r2',
                  'Sentiment_indicator_monthly_data': 'ei_bssi_m_r2',
                  'Services_monthly_data': 'ei_bsse_m_r2',
                  'EU_Business_climate_indicator_monthly_data': 'ei_bsci_m_r2',
@@ -113,9 +112,21 @@ def eurostat_requests():
                  'Gross_value_added_and_income_by_industry': 'namq_10_a10',
                  'Employmentby_industry': 'namq_10_a10_e',
     } 
-    temp_dict = {}
+    #temp_dict = {}
     for value in dict_codes: # For each variable in the dictionary (key) get the associated Eurostat code for the request
-        temp_dict[value] = eurostat.get_data_df(dict_codes[value]) # Assign the dataframe returned from the request to the variable (key) of the dictionary
+        df = eurostat.get_data_df(dict_codes[value]) # Assign the dataframe returned from the request to the variable (key) of the dictionary
+        # slice large datasets
+        if value == 'Gross_value_added_and_income_by_industry':
+            df = df.drop(df[(df["s_adj"] != "NSA") | (df["na_item"] != "B1G") | (df["unit"] != "CLV_I05") | (df["nace_r2"] != "TOTAL")].index)
+        elif value == 'GDP_and_main_components':
+            df = df.drop(df[(df["na_item"] != "B1GQ") | (df["unit"] != "CLV_I05")].index)
+        elif value == 'Harmonized_index_of_consumer_prices_monthly_data':
+            df = df.drop(df[(df["s_adj"] != "NSA") | (df["indic"] != "CP-HI00") | (df["unit"] != "HICP2015")].index)
+        elif value == 'Employmentby_industry':
+            df = df.drop(df[(df["s_adj"] != "SCA") | (df["na_item"] != "EMP_DC") | (df["unit"] != "PCH_PRE_PER") | (df["nace_r2"] != "TOTAL")].index)
+        elif value == 'Unemployment_by_sex_and_age_monthly_data':
+            df = df.drop(df[(df["s_adj"] != "SA") | (df["sex"] != "T") | (df["unit"] != "PC_ACT") | (df["age"] != "TOTAL")].index)
+
         path_file = Path.cwd() / 'Eurostat_data' / f"{value}.csv" # Define the path to th file
-        temp_dict[value].to_csv(path_file, index = False) # Write the dataframe to csv
+        df.to_csv(path_file, index = False) # Write the dataframe to csv
 

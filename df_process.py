@@ -18,10 +18,7 @@ path_GDP = Path.cwd() / 'Eurostat_data' / 'GDP_and_main_components.csv'
 path_HICP = Path.cwd() / 'Eurostat_data' / 'Harmonized_index_of_consumer_prices_monthly_data.csv'
 path_HU = Path.cwd() / 'Eurostat_data' / 'Unemployment_by_sex_and_age_monthly_data.csv'
 path_BC = Path.cwd() / 'Eurostat_data' / 'EU_Business_climate_indicator_monthly_data.csv'
-path_construction = Path.cwd() / 'Eurostat_data' / 'Construction_monthly_data.csv'
-path_consumer = Path.cwd() / 'Eurostat_data' / 'Consumer_monthly_data.csv'
 path_energy = Path.cwd() / 'Eurostat_data' / 'Energy_monthly_data.csv'
-path_industry = Path.cwd() / 'Eurostat_data' / 'Industry_monthly_data.csv'
 path_interest = Path.cwd() / 'Eurostat_data' / 'Interest_rate_monthly_data.csv'
 path_job = Path.cwd() / 'Eurostat_data' / 'Job_vacancy_rate.csv'
 path_retail = Path.cwd() / 'Eurostat_data' / 'Retail_sale_monthly_data.csv'
@@ -218,20 +215,6 @@ countries_aggr.append(list(SV_plot[r"geo\time"]))
 
 SV_plot = SV_plot.set_index(r"geo\time").T
 
-#fifth plot: Consumer
-
-CN = pd.read_csv(path_consumer)
-CN_plot = eurostat_columns_df(CN, start_date, end_date, dict_col = { "s_adj": ['NSA'], "indic": ['BS-CSMCI'], "unit": ["BAL"], r"geo\time": []})
-CN_plot = CN_plot.drop(['s_adj','indic', 'unit'], axis=1).reset_index(drop = True)
-
-for geo in CN_plot[r"geo\time"]:
-    if geo in set(ISO['alpha-2']):
-        CN_plot.at[CN_plot[r"geo\time"] == geo,r"geo\time"] = ISO.loc[ISO['alpha-2'] == geo,'name'].iloc[0]
-
-countries_aggr.append(list(CN_plot[r"geo\time"]))
-
-CN_plot = CN_plot.set_index(r"geo\time").T
-
 #sixth plot: Interest rate
 
 IRST = pd.read_csv(path_interest)
@@ -247,34 +230,6 @@ for geo in IRST_LTGBY_plot[r"geo\time"]:
 countries_aggr.append(list(IRST_LTGBY_plot[r"geo\time"]))
 
 IRST_LTGBY_plot = IRST_LTGBY_plot.set_index(r"geo\time").T
-
-#seventh plot: Industry
-
-IND = pd.read_csv(path_industry)
-IND_plot = eurostat_columns_df(IND, start_date, end_date, dict_col = { "s_adj": ['NSA'], "indic": ['BS-ICI'], "unit": ["BAL"], r"geo\time": []})
-IND_plot = IND_plot.drop(['s_adj','indic', 'unit'], axis=1).reset_index(drop = True)
-
-for geo in IND_plot[r"geo\time"]:
-    if geo in set(ISO['alpha-2']):
-        IND_plot.at[IND_plot[r"geo\time"] == geo,r"geo\time"] = ISO.loc[ISO['alpha-2'] == geo,'name'].iloc[0]
-
-countries_aggr.append(list(IND_plot[r"geo\time"]))
-
-IND_plot = IND_plot.set_index(r"geo\time").T
-
-#eighth plot: Construction
-
-CSTR = pd.read_csv(path_construction)
-CSTR_plot = eurostat_columns_df(CSTR, start_date, end_date, dict_col = { "s_adj": ['NSA'], "indic": ['BS-CCI-BAL'], r"geo\time": []})
-CSTR_plot = CSTR_plot.drop(['s_adj','indic',], axis=1).reset_index(drop = True)
-
-for geo in CSTR_plot[r"geo\time"]:
-    if geo in set(ISO['alpha-2']):
-        CSTR_plot.at[CSTR_plot[r"geo\time"] == geo,r"geo\time"] = ISO.loc[ISO['alpha-2'] == geo,'name'].iloc[0]
-
-countries_aggr.append(list(CSTR_plot[r"geo\time"]))
-
-CSTR_plot = CSTR_plot.set_index(r"geo\time").T
 
 #eighth plot: Energy
 
@@ -422,10 +377,9 @@ for geo in HIIG_plot[r"geo\time"]:
         HIIG_plot.at[HIIG_plot[r"geo\time"] == geo,r"geo\time"] = ISO.loc[ISO['alpha-2'] == geo,'name'].iloc[0]
 
 
-countries_aggr.append(list(set(HIIG_plot[r"geo\time"])-set(['EU','EA18']))) 
+countries_aggr.append(list(HIIG_plot[r"geo\time"])) 
 
 HIIG_plot = HIIG_plot.set_index(r"geo\time").T
-HIIG_plot.drop(['EU','EA18'], axis=1, inplace=True)
 
 #	CP-HIS	HICP - Total services
 
@@ -492,32 +446,26 @@ for country in countries_diff[10]:
 for country in countries_diff[11]:
     SV_plot[country ] = np.nan
 for country in countries_diff[12]:
-    CN_plot[country ] = np.nan
-for country in countries_diff[13]:
     IRST_LTGBY_plot[country ] = np.nan
-for country in countries_diff[14]:
-    IND_plot[country ] = np.nan
-for country in countries_diff[15]:
-    CSTR_plot[country ] = np.nan
-for country in countries_diff[16]:
+for country in countries_diff[13]:
     PEL_plot[country ] = np.nan
-for country in countries_diff[17]:
+for country in countries_diff[14]:
     IRST_DDI_plot[country ] = np.nan
-for country in countries_diff[18]:
+for country in countries_diff[15]:
     IRST_3M_plot[country ] = np.nan
-for country in countries_diff[19]:
+for country in countries_diff[16]:
     grossVA_plot[country ] = np.nan
-for country in countries_diff[20]:
+for country in countries_diff[17]:
     employment_plot[country ] = np.nan
-for country in countries_diff[21]:
+for country in countries_diff[18]:
     CEL_plot[country ] = np.nan
-for country in countries_diff[22]:
+for country in countries_diff[19]:
     IEL_plot[country ] = np.nan
-for country in countries_diff[23]:
+for country in countries_diff[20]:
     PNG_plot[country ] = np.nan
-for country in countries_diff[24]:
+for country in countries_diff[21]:
     CNG_plot[country ] = np.nan
-for country in countries_diff[25]:
+for country in countries_diff[22]:
     ING_plot[country ] = np.nan
 for country in countries_diff[23]:
     HIIG_plot[country ] = np.nan
@@ -540,10 +488,7 @@ dataframe_list = [
     [SI_Construction_plot,'SI_Construction_plot'],   
     [RS_plot,'RS_plot'],   
     [SV_plot,'SV_plot'],   
-    [CN_plot,'CN_plot'],   
     [IRST_LTGBY_plot,'IRST_LTGBY_plot'],   
-    [IND_plot,'IND_plot'],   
-    [CSTR_plot,'CSTR_plot'],   
     [PEL_plot,'PEL_plot'],   
     [SI_Economic_plot,'SI_Economic_plot'],   
     [SI_Industrial_plot,'SI_Industrial_plot'],   
