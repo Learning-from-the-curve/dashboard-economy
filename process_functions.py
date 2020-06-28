@@ -2,6 +2,8 @@ import numpy as np
 import pandas as pd
 from datetime import datetime
 from itertools import product
+from pathlib import Path
+import eurostat
 
 def write_log(str):
     '''
@@ -90,3 +92,30 @@ def eurostat_columns_df(df, start_date, end_date, dict_col):
     new_cols += time_cols # Add to the list of columns the name of the time columns to maintain in the new DataFrame
     temp_df = temp_df[new_cols] # Slice the DataFrame to maintain only the selected columns
     return temp_df
+
+def eurostat_requests():
+    '''
+    Function to request data from Eurostat using variable codes from a dictionary. Then writes the data to csv.
+    '''
+    dict_codes = {'Consumer_monthly_data': 'ei_bsco_m',
+                 'Industry_monthly_data': 'ei_bsin_m_r2',
+                 'Construction_monthly_data': 'ei_bsbu_m_r2',
+                 'Retail_sale_monthly_data': 'ei_bsrt_m_r2',
+                 'Sentiment_indicator_monthly_data': 'ei_bssi_m_r2',
+                 'Services_monthly_data': 'ei_bsse_m_r2',
+                 'EU_Business_climate_indicator_monthly_data': 'ei_bsci_m_r2',
+                 'Harmonized_index_of_consumer_prices_monthly_data': 'ei_cphi_m',
+                 'Energy_monthly_data': 'ei_isen_m',
+                 'Unemployment_by_sex_and_age_monthly_data': 'une_rt_m',
+                 'Job_vacancy_rate': 'ei_lmjv_q_r2',
+                 'Interest_rate_monthly_data': 'ei_mfir_m',
+                 'GDP_and_main_components': 'nama_10_gdp',
+                 'Gross_value_added_and_income_by_industry': 'namq_10_a10',
+                 'Employmentby_industry': 'namq_10_a10_e',
+    } 
+    temp_dict = {}
+    for value in dict_codes: # For each variable in the dictionary (key) get the associated Eurostat code for the request
+        temp_dict[value] = eurostat.get_data_df(dict_codes[value]) # Assign the dataframe returned from the request to the variable (key) of the dictionary
+        path_file = Path.cwd() / 'Eurostat_data' / f"{value}.csv" # Define the path to th file
+        temp_dict[value].to_csv(path_file, index = False) # Write the dataframe to csv
+

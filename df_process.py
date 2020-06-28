@@ -3,12 +3,13 @@ import json
 import pandas as pd
 import numpy as np
 from pathlib import Path
-from process_functions import list_diff, list_union, write_log, eurostat_columns_df
+from process_functions import list_diff, list_union, write_log, eurostat_columns_df, eurostat_requests
 from pickle_functions import picklify, unpicklify
 
 ######################################
 # Retrieve data
 ######################################
+eurostat_requests()
 
 # Paths
 path_grossVA = Path.cwd() / 'Eurostat_data' / 'Gross_value_added_and_income_by_industry.csv'
@@ -34,7 +35,6 @@ ISO = pd.read_csv(path_ISO)
 #pd.set_option('display.max_rows', df.shape[0]+1)
 start_date = 1900
 end_date = 2022
-
 #########################################################################################
 # Data preprocessing for getting useful data and shaping data compatible to plotly plot
 #########################################################################################
