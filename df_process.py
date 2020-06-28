@@ -3,9 +3,8 @@ import json
 import pandas as pd
 import numpy as np
 from pathlib import Path
-from process_functions import list_diff, list_union, write_log
+from process_functions import list_diff, list_union, write_log, eurostat_columns_df
 from pickle_functions import picklify, unpicklify
-from eurostat_functions import eurostat_columns_df
 
 ######################################
 # Retrieve data
