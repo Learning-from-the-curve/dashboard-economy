@@ -41,22 +41,22 @@ end_date = 2022
 
 #first card: GDP
 GDP = pd.read_csv(path_GDP)
-GDP_card = eurostat_columns_df(GDP, "Y", 2019, end_date, dict_col = { "na_item": ["B1GQ"], "unit": ["CLV_I05"], r"geo\time": ["EU28"]})
+GDP_card = eurostat_columns_df(GDP, 2019, end_date, dict_col = { "na_item": ["B1GQ"], "unit": ["CLV_I05"], r"geo\time": ["EU28"]})
 GDP_card.reset_index(drop = True, inplace = True)
 GDP_card = GDP_card.loc[:, ~(GDP_card.isnull()).any()]
 #second card: HICP
 HICP = pd.read_csv(path_HICP)
-HICP_card = eurostat_columns_df(HICP, "M", 2019, end_date, dict_col = {"indic": ["CP-HI00"], "s_adj": ["NSA"], "unit": ["HICP2015"], r"geo\time": ["EU28"]})
+HICP_card = eurostat_columns_df(HICP, 2019, end_date, dict_col = {"indic": ["CP-HI00"], "s_adj": ["NSA"], "unit": ["HICP2015"], r"geo\time": ["EU28"]})
 HICP_card.reset_index(drop = True, inplace = True)
 HICP_card = HICP_card.loc[:, ~(HICP_card.isnull()).any()]
 #third card: unemployment
 HU = pd.read_csv(path_HU)
-HU_card = eurostat_columns_df(HU, "M", 2019, end_date, dict_col = {'sex': ['T'], "s_adj": ["SA"], 'age' : ['TOTAL'], "unit": ["PC_ACT"], r"geo\time": ["EU28"]})
+HU_card = eurostat_columns_df(HU, 2019, end_date, dict_col = {'sex': ['T'], "s_adj": ["SA"], 'age' : ['TOTAL'], "unit": ["PC_ACT"], r"geo\time": ["EU28"]})
 HU_card.reset_index(drop = True, inplace = True)
 HU_card = HU_card.loc[:, ~(HU_card.isnull()).any()]
 #fourth card: businnes climate
 BC = pd.read_csv(path_BC)
-BC_card = eurostat_columns_df(BC, "M", 2019, end_date, dict_col = {"indic": [], "s_adj": [], r"geo\time": []})
+BC_card = eurostat_columns_df(BC, 2019, end_date, dict_col = {"indic": [], "s_adj": [], r"geo\time": []})
 BC_card.reset_index(drop = True, inplace = True)
 BC_card = BC_card.loc[:, ~(BC_card.isnull()).any()]
 
@@ -64,7 +64,7 @@ countries_aggr=[]
 
 #first plot: GDP
 
-GDP_plot = eurostat_columns_df(GDP, "Y", start_date, end_date, dict_col = { "na_item": ["B1GQ"], "unit": ["CLV_I05"], r"geo\time": []})
+GDP_plot = eurostat_columns_df(GDP, start_date, end_date, dict_col = { "na_item": ["B1GQ"], "unit": ["CLV_I05"], r"geo\time": []})
 GDP_plot = GDP_plot.drop(['na_item','unit'], axis=1).reset_index(drop = True)
 
 for geo in GDP_plot[r"geo\time"]:
@@ -79,7 +79,7 @@ GDP_plot.drop(['EA12','EU15'], axis=1, inplace=True)
 #second plot: HICP 
 #   CP-HI00	HICP - All items (HICP=Harmonized Index of Consumer Prices)
 
-HI00_plot = eurostat_columns_df(HICP, "M", start_date, end_date, dict_col = { "s_adj": ['NSA'], "indic": ['CP-HI00'], "unit": ["HICP2015"], r"geo\time": []})
+HI00_plot = eurostat_columns_df(HICP, start_date, end_date, dict_col = { "s_adj": ['NSA'], "indic": ['CP-HI00'], "unit": ["HICP2015"], r"geo\time": []})
 HI00_plot = HI00_plot.drop(['indic','unit', 's_adj'], axis=1).reset_index(drop = True)
 
 for geo in HI00_plot[r"geo\time"]:
@@ -94,7 +94,7 @@ HI00_plot.drop(['United States of America','EU','EA18'], axis=1, inplace=True)
 
 #third plot: unemployment
 
-HU_plot = eurostat_columns_df(HU, "M", start_date, end_date, dict_col = {'sex': ['T'], "s_adj": ["SA"], 'age' : ['TOTAL'], "unit": ["PC_ACT"], r"geo\time": []})
+HU_plot = eurostat_columns_df(HU, start_date, end_date, dict_col = {'sex': ['T'], "s_adj": ["SA"], 'age' : ['TOTAL'], "unit": ["PC_ACT"], r"geo\time": []})
 HU_plot = HU_plot.drop(['sex', "s_adj", 'age', "unit"], axis=1).reset_index(drop = True)
 
 for geo in HU_plot[r"geo\time"]:
@@ -109,7 +109,7 @@ HU_plot.drop(['United States of America','Japan','EU25','EA18','EU27_2007'], axi
 #third plot: job vacancy
 
 job = pd.read_csv(path_job)
-job_plot = eurostat_columns_df(job, "Q", start_date, end_date, dict_col = {"nace_r2": ['A-S'], "s_adj": ['NSA'], "indic": ['JOBRATE'], "sizeclas": ["TOTAL"], r"geo\time": []})
+job_plot = eurostat_columns_df(job, start_date, end_date, dict_col = {"nace_r2": ['A-S'], "s_adj": ['NSA'], "indic": ['JOBRATE'], "sizeclas": ["TOTAL"], r"geo\time": []})
 job_plot = job_plot.drop(['s_adj','nace_r2','sizeclas','indic'], axis=1).reset_index(drop = True)
 
 for geo in job_plot[r"geo\time"]:
@@ -123,7 +123,7 @@ job_plot = job_plot.set_index(r"geo\time").T
 #fourth plot: sentiment indicator
 SI = pd.read_csv(path_sentiment)
 #construction
-SI_Construction_plot = eurostat_columns_df(SI, "M", start_date, end_date, dict_col = { "s_adj": ['SA'], "indic": ['BS-CCI-BAL'], r"geo\time": []})
+SI_Construction_plot = eurostat_columns_df(SI, start_date, end_date, dict_col = { "s_adj": ['SA'], "indic": ['BS-CCI-BAL'], r"geo\time": []})
 SI_Construction_plot = SI_Construction_plot.drop(['s_adj','indic'], axis=1).reset_index(drop = True)
 
 for geo in SI_Construction_plot[r"geo\time"]:
@@ -135,7 +135,7 @@ countries_aggr.append(list(SI_Construction_plot[r"geo\time"]))
 SI_Construction_plot = SI_Construction_plot.set_index(r"geo\time").T
 
 #economic
-SI_Economic_plot = eurostat_columns_df(SI, "M", start_date, end_date, dict_col = { "s_adj": ['SA'], "indic": ['BS-ESI-I'], r"geo\time": []})
+SI_Economic_plot = eurostat_columns_df(SI, start_date, end_date, dict_col = { "s_adj": ['SA'], "indic": ['BS-ESI-I'], r"geo\time": []})
 SI_Economic_plot = SI_Economic_plot.drop(['s_adj','indic'], axis=1).reset_index(drop = True)
 
 for geo in SI_Economic_plot[r"geo\time"]:
@@ -147,7 +147,7 @@ countries_aggr.append(list(SI_Economic_plot[r"geo\time"]))
 SI_Economic_plot = SI_Economic_plot.set_index(r"geo\time").T
 
 #industrial
-SI_Industrial_plot = eurostat_columns_df(SI, "M", start_date, end_date, dict_col = { "s_adj": ['SA'], "indic": ['BS-ICI-BAL'], r"geo\time": []})
+SI_Industrial_plot = eurostat_columns_df(SI, start_date, end_date, dict_col = { "s_adj": ['SA'], "indic": ['BS-ICI-BAL'], r"geo\time": []})
 SI_Industrial_plot = SI_Industrial_plot.drop(['s_adj','indic'], axis=1).reset_index(drop = True)
 
 for geo in SI_Industrial_plot[r"geo\time"]:
@@ -158,7 +158,7 @@ countries_aggr.append(list(SI_Industrial_plot[r"geo\time"]))
 SI_Industrial_plot = SI_Industrial_plot.set_index(r"geo\time").T
 
 #retail
-SI_Retail_plot = eurostat_columns_df(SI, "M", start_date, end_date, dict_col = { "s_adj": ['SA'], "indic": ['BS-RCI-BAL'], r"geo\time": []})
+SI_Retail_plot = eurostat_columns_df(SI, start_date, end_date, dict_col = { "s_adj": ['SA'], "indic": ['BS-RCI-BAL'], r"geo\time": []})
 SI_Retail_plot = SI_Retail_plot.drop(['s_adj','indic'], axis=1).reset_index(drop = True)
 
 for geo in SI_Retail_plot[r"geo\time"]:
@@ -169,7 +169,7 @@ countries_aggr.append(list(SI_Retail_plot[r"geo\time"]))
 SI_Retail_plot = SI_Retail_plot.set_index(r"geo\time").T
 
 #consumer
-SI_Consumer_plot = eurostat_columns_df(SI, "M", start_date, end_date, dict_col = { "s_adj": ['SA'], "indic": ['BS-CSMCI-BAL'], r"geo\time": []})
+SI_Consumer_plot = eurostat_columns_df(SI, start_date, end_date, dict_col = { "s_adj": ['SA'], "indic": ['BS-CSMCI-BAL'], r"geo\time": []})
 SI_Consumer_plot = SI_Consumer_plot.drop(['s_adj','indic'], axis=1).reset_index(drop = True)
 
 for geo in SI_Consumer_plot[r"geo\time"]:
@@ -180,7 +180,7 @@ countries_aggr.append(list(SI_Consumer_plot[r"geo\time"]))
 SI_Consumer_plot = SI_Consumer_plot.set_index(r"geo\time").T
 
 #services
-SI_Services_plot = eurostat_columns_df(SI, "M", start_date, end_date, dict_col = { "s_adj": ['SA'], "indic": ['BS-SCI-BAL'], r"geo\time": []})
+SI_Services_plot = eurostat_columns_df(SI, start_date, end_date, dict_col = { "s_adj": ['SA'], "indic": ['BS-SCI-BAL'], r"geo\time": []})
 SI_Services_plot = SI_Services_plot.drop(['s_adj','indic'], axis=1).reset_index(drop = True)
 
 for geo in SI_Services_plot[r"geo\time"]:
@@ -193,7 +193,7 @@ SI_Services_plot = SI_Services_plot.set_index(r"geo\time").T
 #fifth plot: retail sale
 
 RS = pd.read_csv(path_retail)
-RS_plot = eurostat_columns_df(RS, "M", start_date, end_date, dict_col = { "s_adj": ['NSA'], "indic": ['BS-RAS'], "unit": ["BAL"], r"geo\time": []})
+RS_plot = eurostat_columns_df(RS, start_date, end_date, dict_col = { "s_adj": ['NSA'], "indic": ['BS-RAS'], "unit": ["BAL"], r"geo\time": []})
 RS_plot = RS_plot.drop(['s_adj','indic', 'unit'], axis=1).reset_index(drop = True)
 
 for geo in RS_plot[r"geo\time"]:
@@ -207,7 +207,7 @@ RS_plot = RS_plot.set_index(r"geo\time").T
 #fifth plot: services
 
 SV = pd.read_csv(path_services)
-SV_plot = eurostat_columns_df(SV, "M", start_date, end_date, dict_col = { "s_adj": ['NSA'], "indic": ['BS-SCI'], "unit": ["BAL"], r"geo\time": []})
+SV_plot = eurostat_columns_df(SV, start_date, end_date, dict_col = { "s_adj": ['NSA'], "indic": ['BS-SCI'], "unit": ["BAL"], r"geo\time": []})
 SV_plot = SV_plot.drop(['s_adj','indic', 'unit'], axis=1).reset_index(drop = True)
 
 for geo in SV_plot[r"geo\time"]:
@@ -221,7 +221,7 @@ SV_plot = SV_plot.set_index(r"geo\time").T
 #fifth plot: Consumer
 
 CN = pd.read_csv(path_consumer)
-CN_plot = eurostat_columns_df(CN, "M", start_date, end_date, dict_col = { "s_adj": ['NSA'], "indic": ['BS-CSMCI'], "unit": ["BAL"], r"geo\time": []})
+CN_plot = eurostat_columns_df(CN, start_date, end_date, dict_col = { "s_adj": ['NSA'], "indic": ['BS-CSMCI'], "unit": ["BAL"], r"geo\time": []})
 CN_plot = CN_plot.drop(['s_adj','indic', 'unit'], axis=1).reset_index(drop = True)
 
 for geo in CN_plot[r"geo\time"]:
@@ -237,7 +237,7 @@ CN_plot = CN_plot.set_index(r"geo\time").T
 IRST = pd.read_csv(path_interest)
 
 #	Long term government bond yields - Maastricht definition
-IRST_LTGBY_plot = eurostat_columns_df(IRST, "M", start_date, end_date, dict_col = { "s_adj": ['NSA'], "indic": ['MF-LTGBY-RT'], "p_adj": ["NAP"], r"geo\time": []})
+IRST_LTGBY_plot = eurostat_columns_df(IRST, start_date, end_date, dict_col = { "s_adj": ['NSA'], "indic": ['MF-LTGBY-RT'], "p_adj": ["NAP"], r"geo\time": []})
 IRST_LTGBY_plot = IRST_LTGBY_plot.drop(['s_adj','indic', 'p_adj'], axis=1).reset_index(drop = True)
 
 for geo in IRST_LTGBY_plot[r"geo\time"]:
@@ -251,7 +251,7 @@ IRST_LTGBY_plot = IRST_LTGBY_plot.set_index(r"geo\time").T
 #seventh plot: Industry
 
 IND = pd.read_csv(path_industry)
-IND_plot = eurostat_columns_df(IND, "M", start_date, end_date, dict_col = { "s_adj": ['NSA'], "indic": ['BS-ICI'], "unit": ["BAL"], r"geo\time": []})
+IND_plot = eurostat_columns_df(IND, start_date, end_date, dict_col = { "s_adj": ['NSA'], "indic": ['BS-ICI'], "unit": ["BAL"], r"geo\time": []})
 IND_plot = IND_plot.drop(['s_adj','indic', 'unit'], axis=1).reset_index(drop = True)
 
 for geo in IND_plot[r"geo\time"]:
@@ -265,7 +265,7 @@ IND_plot = IND_plot.set_index(r"geo\time").T
 #eighth plot: Construction
 
 CSTR = pd.read_csv(path_construction)
-CSTR_plot = eurostat_columns_df(CSTR, "M", start_date, end_date, dict_col = { "s_adj": ['NSA'], "indic": ['BS-CCI-BAL'], r"geo\time": []})
+CSTR_plot = eurostat_columns_df(CSTR, start_date, end_date, dict_col = { "s_adj": ['NSA'], "indic": ['BS-CCI-BAL'], r"geo\time": []})
 CSTR_plot = CSTR_plot.drop(['s_adj','indic',], axis=1).reset_index(drop = True)
 
 for geo in CSTR_plot[r"geo\time"]:
@@ -280,7 +280,7 @@ CSTR_plot = CSTR_plot.set_index(r"geo\time").T
 
 # prod electr
 EN = pd.read_csv(path_energy)
-PEL_plot = eurostat_columns_df(EN, "M", start_date, end_date, dict_col = { "s_adj": ['NSA'], "indic": ['IS-PEL-GWH'], r"geo\time": []})
+PEL_plot = eurostat_columns_df(EN, start_date, end_date, dict_col = { "s_adj": ['NSA'], "indic": ['IS-PEL-GWH'], r"geo\time": []})
 PEL_plot = PEL_plot.drop(['s_adj','indic',], axis=1).reset_index(drop = True)
 
 for geo in PEL_plot[r"geo\time"]:
@@ -292,7 +292,7 @@ countries_aggr.append(list(set(PEL_plot[r"geo\time"])-set(['EU27_2007'])))
 PEL_plot = PEL_plot.set_index(r"geo\time").T
 PEL_plot.drop(['EU27_2007'], axis=1, inplace=True)
 #	Day-to-day money market
-IRST_DDI_plot = eurostat_columns_df(IRST, "M", start_date, end_date, dict_col = { "s_adj": ['NSA'], "indic": ['MF-DDI-RT'], "p_adj": ["NAP"], r"geo\time": []})
+IRST_DDI_plot = eurostat_columns_df(IRST, start_date, end_date, dict_col = { "s_adj": ['NSA'], "indic": ['MF-DDI-RT'], "p_adj": ["NAP"], r"geo\time": []})
 IRST_DDI_plot = IRST_DDI_plot.drop(['s_adj','indic', 'p_adj'], axis=1).reset_index(drop = True)
 
 for geo in IRST_DDI_plot[r"geo\time"]:
@@ -305,7 +305,7 @@ IRST_DDI_plot = IRST_DDI_plot.set_index(r"geo\time").T
 IRST_DDI_plot.drop(['United States of America','Japan'], axis=1, inplace=True)
 
 #	3-month
-IRST_3M_plot = eurostat_columns_df(IRST, "M", start_date, end_date, dict_col = { "s_adj": ['NSA'], "indic": ['MF-3MI-RT'], "p_adj": ["NAP"], r"geo\time": []})
+IRST_3M_plot = eurostat_columns_df(IRST, start_date, end_date, dict_col = { "s_adj": ['NSA'], "indic": ['MF-3MI-RT'], "p_adj": ["NAP"], r"geo\time": []})
 IRST_3M_plot = IRST_3M_plot.drop(['s_adj','indic', 'p_adj'], axis=1).reset_index(drop = True)
 
 for geo in IRST_3M_plot[r"geo\time"]:
@@ -320,7 +320,7 @@ IRST_3M_plot.drop(['United States of America','Japan'], axis=1, inplace=True)
 #first plot: gross va 
 grossVA = pd.read_csv(path_grossVA)
 
-grossVA_plot = eurostat_columns_df(grossVA, "Q", start_date, end_date, dict_col = { 'unit': ['CLV_I05'], "na_item": ['B1G'], "s_adj": ['NSA'], "nace_r2": ['TOTAL'], r"geo\time": []})
+grossVA_plot = eurostat_columns_df(grossVA, start_date, end_date, dict_col = { 'unit': ['CLV_I05'], "na_item": ['B1G'], "s_adj": ['NSA'], "nace_r2": ['TOTAL'], r"geo\time": []})
 grossVA_plot = grossVA_plot.drop(['unit','s_adj','nace_r2','na_item'], axis=1).reset_index(drop = True)
 
 for geo in grossVA_plot[r"geo\time"]:
@@ -335,7 +335,7 @@ grossVA_plot.drop([ 'EA12', 'EU15'], axis=1, inplace=True)
 #second plot: employment 
 employment = pd.read_csv(path_employment)
 
-employment_plot = eurostat_columns_df(employment, "Q", start_date, end_date, dict_col = { "s_adj": ['SCA'], "nace_r2": ['TOTAL'], "unit": ['PCH_PRE_PER'], "na_item": ['EMP_DC'], r"geo\time": []})
+employment_plot = eurostat_columns_df(employment, start_date, end_date, dict_col = { "s_adj": ['SCA'], "nace_r2": ['TOTAL'], "unit": ['PCH_PRE_PER'], "na_item": ['EMP_DC'], r"geo\time": []})
 employment_plot = employment_plot.drop(['unit','nace_r2','s_adj','na_item'], axis=1).reset_index(drop = True)
 
 for geo in employment_plot[r"geo\time"]:
@@ -348,7 +348,7 @@ employment_plot = employment_plot.set_index(r"geo\time").T
 employment_plot.drop(['EA12', 'EU15'], axis=1, inplace=True)
 # consumed electr
 EN = pd.read_csv(path_energy)
-CEL_plot = eurostat_columns_df(EN, "M", start_date, end_date, dict_col = { "s_adj": ['NSA'], "indic": ['IS-CEL-GWH'], r"geo\time": []})
+CEL_plot = eurostat_columns_df(EN, start_date, end_date, dict_col = { "s_adj": ['NSA'], "indic": ['IS-CEL-GWH'], r"geo\time": []})
 CEL_plot = CEL_plot.drop(['s_adj','indic',], axis=1).reset_index(drop = True)
 
 for geo in CEL_plot[r"geo\time"]:
@@ -361,7 +361,7 @@ CEL_plot = CEL_plot.set_index(r"geo\time").T
 CEL_plot.drop(['EU27_2007'], axis=1, inplace=True)
 # import electr
 EN = pd.read_csv(path_energy)
-IEL_plot = eurostat_columns_df(EN, "M", start_date, end_date, dict_col = { "s_adj": ['NSA'], "indic": ['IS-IEL-GWH'], r"geo\time": []})
+IEL_plot = eurostat_columns_df(EN, start_date, end_date, dict_col = { "s_adj": ['NSA'], "indic": ['IS-IEL-GWH'], r"geo\time": []})
 IEL_plot = IEL_plot.drop(['s_adj','indic',], axis=1).reset_index(drop = True)
 
 for geo in IEL_plot[r"geo\time"]:
@@ -374,7 +374,7 @@ IEL_plot = IEL_plot.set_index(r"geo\time").T
 IEL_plot.drop(['EU27_2007'], axis=1, inplace=True)
 # prod gas
 EN = pd.read_csv(path_energy)
-PNG_plot = eurostat_columns_df(EN, "M", start_date, end_date, dict_col = { "s_adj": ['NSA'], "indic": ['IS-PNG-TJ'], r"geo\time": []})
+PNG_plot = eurostat_columns_df(EN, start_date, end_date, dict_col = { "s_adj": ['NSA'], "indic": ['IS-PNG-TJ'], r"geo\time": []})
 PNG_plot = PNG_plot.drop(['s_adj','indic',], axis=1).reset_index(drop = True)
 
 for geo in PNG_plot[r"geo\time"]:
@@ -387,7 +387,7 @@ PNG_plot = PNG_plot.set_index(r"geo\time").T
 PNG_plot.drop(['EU27_2007'], axis=1, inplace=True)
 # consumed gas
 EN = pd.read_csv(path_energy)
-CNG_plot = eurostat_columns_df(EN, "M", start_date, end_date, dict_col = { "s_adj": ['NSA'], "indic": ['IS-CNG-TJ'], r"geo\time": []})
+CNG_plot = eurostat_columns_df(EN, start_date, end_date, dict_col = { "s_adj": ['NSA'], "indic": ['IS-CNG-TJ'], r"geo\time": []})
 CNG_plot = CNG_plot.drop(['s_adj','indic',], axis=1).reset_index(drop = True)
 
 for geo in CNG_plot[r"geo\time"]:
@@ -400,7 +400,7 @@ CNG_plot = CNG_plot.set_index(r"geo\time").T
 CNG_plot.drop(['EU27_2007'], axis=1, inplace=True)
 # import gas
 EN = pd.read_csv(path_energy)
-ING_plot = eurostat_columns_df(EN, "M", start_date, end_date, dict_col = { "s_adj": ['NSA'], "indic": ['IS-ING-TJ'], r"geo\time": []})
+ING_plot = eurostat_columns_df(EN, start_date, end_date, dict_col = { "s_adj": ['NSA'], "indic": ['IS-ING-TJ'], r"geo\time": []})
 ING_plot = ING_plot.drop(['s_adj','indic',], axis=1).reset_index(drop = True)
 
 for geo in ING_plot[r"geo\time"]:
@@ -414,7 +414,7 @@ ING_plot.drop(['EU27_2007'], axis=1, inplace=True)
 
 #	CP-HIIG	HICP - Industrial goods
 
-HIIG_plot = eurostat_columns_df(HICP, "M", start_date, end_date, dict_col = { "s_adj": ['NSA'], "indic": ['CP-HIIG'], "unit": ["HICP2015"], r"geo\time": []})
+HIIG_plot = eurostat_columns_df(HICP, start_date, end_date, dict_col = { "s_adj": ['NSA'], "indic": ['CP-HIIG'], "unit": ["HICP2015"], r"geo\time": []})
 HIIG_plot = HIIG_plot.drop(['indic','unit', 's_adj'], axis=1).reset_index(drop = True)
 
 for geo in HIIG_plot[r"geo\time"]:
@@ -429,7 +429,7 @@ HIIG_plot.drop(['EU','EA18'], axis=1, inplace=True)
 
 #	CP-HIS	HICP - Total services
 
-HIS_plot = eurostat_columns_df(HICP, "M", start_date, end_date, dict_col = { "s_adj": ['NSA'], "indic": ['CP-HIS'], "unit": ["HICP2015"], r"geo\time": []})
+HIS_plot = eurostat_columns_df(HICP, start_date, end_date, dict_col = { "s_adj": ['NSA'], "indic": ['CP-HIS'], "unit": ["HICP2015"], r"geo\time": []})
 HIS_plot = HIS_plot.drop(['indic','unit', 's_adj'], axis=1).reset_index(drop = True)
 
 for geo in HIS_plot[r"geo\time"]:
@@ -443,7 +443,7 @@ HIS_plot = HIS_plot.set_index(r"geo\time").T
 
 #   CP-HI00XEF	HICP - All items excluding energy, food, alcohol and tobacco
 
-HI00XEF_plot = eurostat_columns_df(HICP, "M", start_date, end_date, dict_col = { "s_adj": ['NSA'], "indic": ['CP-HI00XEF'], "unit": ["HICP2015"], r"geo\time": []})
+HI00XEF_plot = eurostat_columns_df(HICP, start_date, end_date, dict_col = { "s_adj": ['NSA'], "indic": ['CP-HI00XEF'], "unit": ["HICP2015"], r"geo\time": []})
 HI00XEF_plot = HI00XEF_plot.drop(['indic','unit', 's_adj'], axis=1).reset_index(drop = True)
 
 for geo in HI00XEF_plot[r"geo\time"]:

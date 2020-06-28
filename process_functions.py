@@ -22,7 +22,7 @@ def list_union(lst1, lst2):
     final_list = list(set(lst1) | set(lst2)) 
     return final_list 
 
-def eurostat_columns_df(df, time_interval, start_date, end_date, dict_col):
+def eurostat_columns_df(df, start_date, end_date, dict_col):
     '''
     Return a filtered dataframe based on the filters given as arguments. Currently used to filter dataframes dowloaded from Eurostat,
     but can be used also to filter other dataframes with a similar structure.
@@ -50,13 +50,15 @@ def eurostat_columns_df(df, time_interval, start_date, end_date, dict_col):
     EXAMPLE:
     eurostat_columns_df(df, "Y", 2010, 2020, dict_col = {"sex": ["T"], "isced11": [], "age": [], "unit": [], r"geo\time": []})
     '''
+    time_interval = df.columns[-1]
+    #print(time_interval,len(time_interval))
     years = [f"{x}" for x in range(start_date, end_date + 1)] # Create a list with the year of interest
-    if time_interval == "Y": # If the DataFrame contains yearly data and the time columns follow the year format
+    if len(time_interval) == 4: # If the DataFrame contains yearly data and the time columns follow the year format
         time_cols = [] # Initialize an empty list
         for year in years: # For each year (a column name)
             if year in list(df): # If that year is in the name of the columns of the DataFrame
                 time_cols.append(year) # Append that year to the initalized list
-    elif time_interval == "Q": # If quarterly data
+    elif len(time_interval) == 6 and time_interval[4] == "Q": # If quarterly data
         quarters = ["Q1", "Q2", "Q3", "Q4"] # Create a list with the four strings that specify the quarter
         temp_product = product(years, quarters) # Combine all the years of interest with the quarters within a year
         temp_time = [] # Initialize an empty list
@@ -66,7 +68,7 @@ def eurostat_columns_df(df, time_interval, start_date, end_date, dict_col):
         for quarter in temp_time: # For each quarter of interest
             if quarter in list(df): # Check if it is in the list of columns of the Dataframe
                 time_cols.append(quarter) # If there is a match append it to the initialized list of column names
-    elif time_interval == "M": # If monthly data
+    elif len(time_interval) == 7 and time_interval[4] == "M": # If monthly data
         months = ["M01", "M02", "M03", "M04", "M05", "M06", "M07", "M08", "M09", "M10", "M11", "M12"] # Create a list with the twelve strings that specify the month
         temp_product = product(years, months) # Combine all the years of interest with the months within a year
         temp_time = [] # Initialize an empty list
