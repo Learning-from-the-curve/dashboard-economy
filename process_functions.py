@@ -95,10 +95,11 @@ def eurostat_columns_df(df, start_date, end_date, dict_col):
     temp_df = temp_df[new_cols] # Slice the DataFrame to maintain only the selected columns
     return temp_df
 
-def eurostat_requests(path,dict_codes):
+def eurostat_requests(dict_codes, filepath):
     '''
     Function to request data from Eurostat using variable codes from a dictionary. Then writes the data to csv.
     '''
+    existing_files = list_directory(filepath) # Check existing files in the output folder
     for value in dict_codes: # For each variable in the dictionary (key) get the associated Eurostat code for the request
         df = eurostat.get_data_df(dict_codes[value]) # Assign the dataframe returned from the request to the variable (key) of the dictionary
         # slice large datasets
@@ -113,6 +114,23 @@ def eurostat_requests(path,dict_codes):
         elif value == 'Unemployment_by_sex_and_age_monthly_data':
             df = df.drop(df[(df["s_adj"] != "SA") | (df["sex"] != "T") | (df["unit"] != "PC_ACT") | (df["age"] != "TOTAL")].index)
 
-        path_file = path / f"{value}.csv" # Define the path to th file
+        if value in existing_files:
+            old_df = pd.read_csv(filepath / f"{value}.csv")
+            if df.equals(old_df):
+                write_log('same '+ value)
+            else:
+                write_log('diff '+ value)
+        path_file = filepath / f"{value}.csv" # Define the path to th file
         df.to_csv(path_file, index = False) # Write the dataframe to csv
 
+def list_directory(path_folder):
+    '''
+    Return a list containing the names of the files in a folder, the path to it is given as argument, as strings.
+    '''
+    file_names = []
+    for child in sorted(path_folder.iterdir()):
+        if child.suffix == ".pkl" or child.suffix == ".csv":
+            file_names.append(str(child.name)[:-4]) 
+        else:
+            file_names.append(str(child))
+    return file_names

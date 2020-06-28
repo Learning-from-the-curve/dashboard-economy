@@ -23,7 +23,7 @@ dict_codes = {'Retail_sale_monthly_data': 'ei_bsrt_m_r2',
                  'Employmentby_industry': 'namq_10_a10_e',
     } 
 path = Path.cwd() / 'Eurostat_data'
-eurostat_requests(path, dict_codes)
+eurostat_requests(dict_codes, path)
 
 # Paths
 path_grossVA = path / 'Gross_value_added_and_income_by_industry.csv'
