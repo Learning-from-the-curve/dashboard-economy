@@ -15,6 +15,7 @@ numpy = "*"
 xlrd = "*"
 dash-bootstrap-components = "*"
 scout-apm = "*"
+eurostat = "*"
 
 [requires]
 python_version = "3.8"
