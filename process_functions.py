@@ -113,13 +113,14 @@ def eurostat_requests(dict_codes, filepath):
             df = df.drop(df[(df["s_adj"] != "SCA") | (df["na_item"] != "EMP_DC") | (df["unit"] != "PCH_PRE_PER") | (df["nace_r2"] != "TOTAL")].index)
         elif value == 'Unemployment_by_sex_and_age_monthly_data':
             df = df.drop(df[(df["s_adj"] != "SA") | (df["sex"] != "T") | (df["unit"] != "PC_ACT") | (df["age"] != "TOTAL")].index)
-
+        df.reset_index(drop=True, inplace=True)
         if value in existing_files:
             old_df = pd.read_csv(filepath / f"{value}.csv")
             if df.equals(old_df):
                 write_log('same '+ value)
             else:
                 write_log('diff '+ value)
+
         path_file = filepath / f"{value}.csv" # Define the path to th file
         df.to_csv(path_file, index = False) # Write the dataframe to csv
 
@@ -129,8 +130,5 @@ def list_directory(path_folder):
     '''
     file_names = []
     for child in sorted(path_folder.iterdir()):
-        if child.suffix == ".pkl" or child.suffix == ".csv":
-            file_names.append(str(child.name)[:-4]) 
-        else:
-            file_names.append(str(child))
+        file_names.append(str(child.name)[:-4]) 
     return file_names
