@@ -99,6 +99,7 @@ def eurostat_requests(dict_codes, filepath):
     '''
     Function to request data from Eurostat using variable codes from a dictionary. Then writes the data to csv.
     '''
+    write_log('--- FILE CHECKS')
     existing_files = list_directory(filepath) # Check existing files in the output folder
     for value in dict_codes: # For each variable in the dictionary (key) get the associated Eurostat code for the request
         df = eurostat.get_data_df(dict_codes[value]) # Assign the dataframe returned from the request to the variable (key) of the dictionary
