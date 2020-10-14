@@ -1350,3 +1350,16 @@
 [13/10/2020 00:36:11] diff GDP_and_main_components
 [13/10/2020 00:36:42] same Gross_value_added_and_income_by_industry
 [13/10/2020 00:36:53] same Employmentby_industry
+[14/10/2020 00:35:36] --- FILE CHECKS
+[14/10/2020 00:35:38] same Retail_sale_monthly_data
+[14/10/2020 00:35:40] same Sentiment_indicator_monthly_data
+[14/10/2020 00:35:41] same Services_monthly_data
+[14/10/2020 00:35:42] same EU_Business_climate_indicator_monthly_data
+[14/10/2020 00:35:48] same Harmonized_index_of_consumer_prices_monthly_data
+[14/10/2020 00:35:49] same Energy_monthly_data
+[14/10/2020 00:35:54] diff Unemployment_by_sex_and_age_monthly_data
+[14/10/2020 00:35:55] same Job_vacancy_rate
+[14/10/2020 00:35:56] same Interest_rate_monthly_data
+[14/10/2020 00:36:01] diff GDP_and_main_components
+[14/10/2020 00:36:28] same Gross_value_added_and_income_by_industry
+[14/10/2020 00:36:45] same Employmentby_industry
