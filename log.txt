@@ -2312,3 +2312,16 @@
 [26/12/2020 00:40:20] diff GDP_and_main_components
 [26/12/2020 00:40:33] same Gross_value_added_and_income_by_industry
 [26/12/2020 00:40:42] same Employmentby_industry
+[27/12/2020 00:42:46] --- FILE CHECKS
+[27/12/2020 00:42:47] same Retail_sale_monthly_data
+[27/12/2020 00:42:49] same Sentiment_indicator_monthly_data
+[27/12/2020 00:42:51] same Services_monthly_data
+[27/12/2020 00:42:51] same EU_Business_climate_indicator_monthly_data
+[27/12/2020 00:42:54] same Harmonized_index_of_consumer_prices_monthly_data
+[27/12/2020 00:42:56] diff Energy_monthly_data
+[27/12/2020 00:42:58] same Unemployment_by_sex_and_age_monthly_data
+[27/12/2020 00:42:59] same Job_vacancy_rate
+[27/12/2020 00:43:00] same Interest_rate_monthly_data
+[27/12/2020 00:43:04] diff GDP_and_main_components
+[27/12/2020 00:43:21] same Gross_value_added_and_income_by_industry
+[27/12/2020 00:43:32] same Employmentby_industry
