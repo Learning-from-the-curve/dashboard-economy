@@ -3937,3 +3937,16 @@
 [30/04/2021 00:44:30] diff GDP_and_main_components
 [30/04/2021 00:44:47] diff Gross_value_added_and_income_by_industry
 [30/04/2021 00:44:55] same Employmentby_industry
+[01/05/2021 00:47:06] --- FILE CHECKS
+[01/05/2021 00:47:07] same Retail_sale_monthly_data
+[01/05/2021 00:47:09] same Sentiment_indicator_monthly_data
+[01/05/2021 00:47:10] same Services_monthly_data
+[01/05/2021 00:47:11] same EU_Business_climate_indicator_monthly_data
+[01/05/2021 00:47:14] diff Harmonized_index_of_consumer_prices_monthly_data
+[01/05/2021 00:47:15] diff Energy_monthly_data
+[01/05/2021 00:47:17] diff Unemployment_by_sex_and_age_monthly_data
+[01/05/2021 00:47:18] same Job_vacancy_rate
+[01/05/2021 00:47:18] diff Interest_rate_monthly_data
+[01/05/2021 00:47:23] diff GDP_and_main_components
+[01/05/2021 00:47:40] diff Gross_value_added_and_income_by_industry
+[01/05/2021 00:47:49] diff Employmentby_industry
